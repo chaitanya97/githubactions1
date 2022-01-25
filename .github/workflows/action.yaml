@@ -10,7 +10,7 @@ jobs:
    steps:
      - name: whoami
        run: echo $(whoami)
-     - name: id
-       run: echo $(id)
+     - name: SystemInfo
+       run: echo $(systeminfo)
      
  
