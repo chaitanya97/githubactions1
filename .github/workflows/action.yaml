@@ -1,0 +1,15 @@
+name: running commands using github actions
+on: 
+ push:
+  - main
+  
+jobs: 
+  init:
+   runs-on: ubuntu-latest
+   steps:
+     - name: whoami
+       run: echo $(whoami)
+     - name: hostname
+       run: echo $(hostname)
+     
+ 
