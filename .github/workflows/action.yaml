@@ -6,7 +6,7 @@ on:
   
 jobs: 
   init:
-   runs-on: ubuntu-latest
+   runs-on: self-hosted
    steps:
      - name: whoami
        run: echo $(whoami)
