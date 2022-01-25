@@ -1,7 +1,8 @@
 name: running commands using github actions
 on: 
  push:
-  - main
+   branches:
+     - main
   
 jobs: 
   init:
