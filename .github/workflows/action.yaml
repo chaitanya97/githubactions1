@@ -1,4 +1,4 @@
-name: publish package as release
+name: build and publishing package as a release asset
 on: [push]
 
 jobs:
