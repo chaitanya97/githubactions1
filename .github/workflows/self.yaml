@@ -9,6 +9,6 @@ jobs:
     steps:
      
       - name: whoami
-        run: echo ${whoami}
+        run: echo $(whoami)
       - name: systeminfo
-        run: echo ${systeminfo}
+        run: echo $(systeminfo)
