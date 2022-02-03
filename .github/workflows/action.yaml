@@ -26,12 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
+      
       - name: Install libraries
         run: |
             cd hello
@@ -40,12 +35,12 @@ jobs:
       - name: Zip bundle
         run: |
             cd hello
-            zip -r ../${{ github.sha }}.zip .
+            zip -r ../publish_package.zip .
       - name: Archive artifact
         uses: actions/upload-artifact@v2
         with:
           name: zipped-bundle
-          path: ${{ github.sha }}.zip
+          path: publish_package.zip
 
   publish:
     runs-on: ubuntu-latest
@@ -57,21 +52,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.run_number }}
-          release_name: Release ${{ github.run_number }}
-          body: New release for ${{ github.sha }}. Release notes can be found in the docs.
+          tag_name: sample
+          release_name: Release lambda function code
+          body: Lambda Function.
           draft: false
           prerelease: false
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: zipped-bundle
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./${{ github.sha }}.zip
-          asset_name: source_code_with_libraries.zip
+          asset_path: ./publish_package.zip
+          asset_name: publish_package.zip
           asset_content_type: application/zip
