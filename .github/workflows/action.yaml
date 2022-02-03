@@ -1,4 +1,4 @@
-name: build and publish package as an release asset
+name: build and publish python code as a package
 on:
  push:
    branches:
