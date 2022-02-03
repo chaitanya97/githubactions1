@@ -57,9 +57,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: sample
+          tag_name: ${{ github.run_number }}
           release_name: Release lambda function code
-          body: Lambda Function.
+          body: Lambda Function
           draft: false
           prerelease: false
       - name: Download artifact
